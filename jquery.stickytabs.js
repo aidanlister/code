@@ -2,7 +2,7 @@
  * jQuery Plugin: Sticky Tabs
  *
  * @author Aidan Lister <aidan@php.net>
- * @version 1.0.0
+ * @version 1.0.1
  */
 (function ( $ ) {
     $.fn.stickyTabs = function() {
@@ -11,7 +11,7 @@
         // Show the tab corresponding with the hash in the URL, or the first tab.
         var showTabFromHash = function() {
           var hash = window.location.hash;
-          var selector = hash ? 'a[href="' + hash + '"]' : 'li:first-child a';
+          var selector = hash ? 'a[href="' + hash + '"]' : 'li.active > a';
           $(selector, context).tab('show');
         }
 
