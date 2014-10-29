@@ -20,9 +20,7 @@
 
         // Set the correct tab when a user uses their back/forward button
         //(jQuery will implement the correct event handler per browser)
-        $(window).on('hashchange'), function(){
-        	showTabFromHash;
-        }
+        $(window).on('hashchange', showTabFromHash);
         
         //window.addEventListener('hashchange', showTabFromHash, false);
 
@@ -36,7 +34,7 @@
 			else {
 				var href = this.href;
 				var hash = href.substring(href.indexOf('#'));
-				location.hash = hash;
+				window.location.hash = hash;
 			}		
                   	
 		
