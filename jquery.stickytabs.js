@@ -19,14 +19,29 @@
         showTabFromHash(context)
 
         // Set the correct tab when a user uses their back/forward button
-        window.addEventListener('hashchange', showTabFromHash, false);
+        //(jQuery will implement the correct event handler per browser)
+        $(window).on('hashchange', showTabFromHash);
+        
+        //window.addEventListener('hashchange', showTabFromHash, false);
 
         // Change the URL when tabs are clicked
         $('a', context).on('click', function(e) {
-          history.pushState(null, null, this.href);
-        });
+		
+			// fall-back to hash update if pushState isn't supported by browser (e.g. IE8).
+			if(history.pushState) {
+				history.pushState(null, null, this.href);
+			}
+			else {
+				var href = this.href;
+				var hash = href.substring(href.indexOf('#'));
+				window.location.hash = hash;
+			}		
+                  	
+		
+		});
 
         return this;
     };
 }( jQuery ));
+
 
