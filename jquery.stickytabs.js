@@ -32,7 +32,13 @@
         $('a', context).on('click', function(e) {
             href=this.href;
             if($.fn.stickyTabs.URLcallback) href=$.fn.stickyTabs.URLcallback(this.href)
-            history.pushState(null, null, href);
+            //history.pushState(null, null, href);
+            
+          parts=href.split("#")
+          parts.shift()
+          if(parts.length)
+          window.location.hash="#"+parts.join('#')
+          
         });
 
         return this;
